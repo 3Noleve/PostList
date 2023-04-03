@@ -1,10 +1,23 @@
 # PostList Project
 
 
-# Technologies Used
-* Prisma
-* Nest
-* MongoDB
+## Technologies Used
+
+<details>
+<summary>Frontend</summary>
+
 * React
 * TypeScript
 * Axios
+</details>
+
+<details>
+<summary>Backend</summary>
+
+* Prisma
+* Nest
+* MongoDB
+</details>
+
+
+
