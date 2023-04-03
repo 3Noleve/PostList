@@ -6,6 +6,8 @@
 <details>
 <summary>Frontend</summary>
 
+<br>
+
 * React
 * TypeScript
 * Axios
@@ -13,6 +15,8 @@
 
 <details>
 <summary>Backend</summary>
+
+<br>
 
 * Prisma
 * Nest
