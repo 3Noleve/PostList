@@ -10,6 +10,7 @@
 
 * React
 * TypeScript
+* Redux-Toolkit
 * Axios
 </details>
 
