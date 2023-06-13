@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import {
   AppContainer,
   Button,
@@ -26,7 +26,7 @@ interface Post {
   description: string;
 }
 
-const App = () => {
+const App = memo(() => {
   const [post, setPost] = React.useState<Post | null>(null);
 
   const [title, setTitle] = React.useState<string>('');
@@ -52,6 +52,8 @@ const App = () => {
       setTitle('');
 
       setDescription('');
+
+      FetchPosts();
     } catch (e) {
       console.warn(e);
     }
@@ -84,29 +86,30 @@ const App = () => {
     }
   };
 
-  const handleDeletePost = async (id: number) => {
-    try {
-      await FetchRemovePost(id);
+  const handleDeletePost = useCallback(
+    async (id: number) => {
+      try {
+        await FetchRemovePost(id);
 
-      dispatch(deletePost(id));
-    } catch (e) {
-      console.warn(e);
-    }
-  };
-
-  const GetPosts = async () => {
-    try {
-      const posts = await FetchPosts();
-
-      dispatch(setPosts({ posts }));
-    } catch (e) {
-      console.warn(e);
-    }
-  };
+        dispatch(deletePost(id));
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    [dispatch],
+  );
 
   React.useEffect(() => {
+    const GetPosts = async () => {
+      try {
+        const posts = await FetchPosts();
+        dispatch(setPosts({ posts }));
+      } catch (e) {
+        console.warn(e);
+      }
+    };
     GetPosts();
-  }, [posts]);
+  }, []);
 
   return (
     <AppContainer>
@@ -162,6 +165,6 @@ const App = () => {
       </ListContainer>
     </AppContainer>
   );
-};
+});
 
 export default App;
